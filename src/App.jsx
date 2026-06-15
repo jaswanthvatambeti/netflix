@@ -6,7 +6,7 @@ import Home from "./pages/Home.jsx";
 import Search from "./pages/Search.jsx";
 import MyList from "./pages/MyList.jsx";
 import Login from "./pages/Login.jsx";
-import Signup from "./pages/SignUp.jsx";
+import Signup from "./pages/Signup.jsx";
 
 export default function App() {
   return (
