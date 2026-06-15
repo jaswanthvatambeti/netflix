@@ -1,0 +1,268 @@
+.row {
+  color: white;
+  margin-left: 60px;
+  margin-right: 60px; /* Add right margin for balance */
+  margin-top: 30px;
+  position: relative;
+}
+
+.row h2 {
+  font-size: 1.4vw;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.row-container {
+  display: flex;
+  overflow-x: visible; /* Changed from scroll to visible */
+  gap: 8px;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbars but keep functionality */
+.row-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.row-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.row-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.row-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.movie-card {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.movie-card:hover {
+  transform: scale(1.2);
+  z-index: 100;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.movie-card:hover .poster {
+  opacity: 0;
+}
+
+/* Different sizes for large vs normal rows */
+.movie-card .poster {
+  width: 150px;
+  height: 225px;
+}
+
+.row.large-row .movie-card .poster {
+  width: 180px;
+  height: 270px;
+}
+
+/* Hover Preview - Improved Positioning */
+.hover-preview {
+  position: absolute;
+  top: -120px; /* Moved higher to be more visible */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  background: #181818;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+  z-index: 1000; /* Higher z-index */
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Smart edge positioning */
+.movie-card:first-child .hover-preview {
+  left: 0;
+  transform: translateX(0);
+}
+
+.movie-card:last-child .hover-preview {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+/* Ensure hover preview stays within viewport */
+.movie-card:nth-child(2) .hover-preview,
+.movie-card:nth-last-child(2) .hover-preview {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.youtube-iframe {
+  width: 100%;
+  height: 180px;
+  border: none;
+  background: #000;
+  border-radius: 8px 8px 0 0;
+}
+
+.preview-fallback {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: linear-gradient(45deg, #333, #555);
+}
+
+.hover-info {
+  padding: 15px;
+}
+
+.hover-info h4 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hover-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.play-btn, .more-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.play-btn {
+  background: white;
+  color: black;
+}
+
+.play-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.more-btn {
+  background: rgba(109, 109, 110, 0.7);
+  color: white;
+}
+
+.more-btn:hover {
+  background: rgba(109, 109, 110, 0.5);
+}
+
+.play-btn::before {
+  content: "▶";
+  font-size: 12px;
+}
+
+.more-btn::before {
+  content: "ℹ";
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .row {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  
+  .hover-preview {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .row {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .hover-preview {
+    width: 280px;
+    top: -100px;
+  }
+  
+  .movie-card .poster {
+    width: 120px;
+    height: 180px;
+  }
+  
+  .row.large-row .movie-card .poster {
+    width: 140px;
+    height: 210px;
+  }
+  
+  /* On mobile, always center the hover preview */
+  .movie-card .hover-preview {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .row {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  
+  .hover-preview {
+    width: 260px;
+    top: -80px;
+  }
+  
+  .youtube-iframe {
+    height: 160px;
+  }
+  
+  .preview-fallback {
+    height: 160px;
+  }
+}
+
+/* Ensure proper spacing between rows */
+.row:not(:first-child) {
+  margin-top: 50px;
+}
+
+/* Make sure content area has proper padding */
+.content {
+  padding-bottom: 100px;
+}

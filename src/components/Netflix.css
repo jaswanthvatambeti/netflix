@@ -1,0 +1,30 @@
+/* Netflix.css */
+.netflix {
+  background: #141414;
+  min-height: 100vh;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  margin-top: -10vh; /* Pull rows up into banner gradient */
+  padding-bottom: 50px;
+}
+
+/* Ensure navbar stays on top */
+.navbar {
+  z-index: 1000;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #141414;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
